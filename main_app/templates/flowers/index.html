@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Cat List</h1>
+
+{% for flower in flowers %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ flower.name }}</span>
+      <p>Type: {{ flower.type }}</p>
+      <p>Description: {{ flower.description }}</p>
+      {% if flower.deerResistant %}
+        <p>Deer Resistant: Yes</p>
+      {% else %}
+      <p>Deer Resistant: No</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
