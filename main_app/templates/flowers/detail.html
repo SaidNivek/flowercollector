@@ -21,6 +21,11 @@
         <p>Hardiness: {{ flower.hardiness }}&deg; F</p>
         <p>Pinch: {{ flower.pinch }}</p>
       </div>
+
+      <div class="card-action">
+        <a href="{% url 'flowers_update' flower.id %}">Edit</a>
+        <a href="{% url 'flowers_delete' flower.id %}">Delete</a>
+      </div>
 </div>
 
 {% endblock %}
