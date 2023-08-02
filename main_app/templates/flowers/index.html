@@ -5,21 +5,24 @@
 
 <div class="flower-cards">
   {% for flower in flowers %}
-  <div class="card">
-    <div class="card-image">
-      <img class="flower-image" src="{{ flower.image }}" alt="{{ flower.name }} image">
-      <span class="card-title">{{ flower.name }}</span>
+  
+  <div class="card small">
+      <a href="/flowers/{{ flower.id }}">
+        <div class="card-image">
+          <img class="flower-image" src="{{ flower.image }}" alt="{{ flower.name }} image">
+          <span class="card-title">{{ flower.name }}</span>
+        </div>
+        <div class="card-content">
+          <p>Type: {{ flower.plantType }}</p>
+          <p>Bloom Time: {{ flower.bloom }}</p>
+          {% if flower.deerResistant %}
+          <p>Deer Resistant: Yes</p>
+          {% else %}
+          <p>Deer Resistant: No</p>
+          {% endif %}
+        </div>
+      </a>  
     </div>
-    <div class="card-content">
-      <p>Type: {{ flower.plantType }}</p>
-      <p>Bloom Time: {{ flower.bloom }}</p>
-      {% if flower.deerResistant %}
-      <p>Deer Resistant: Yes</p>
-      {% else %}
-      <p>Deer Resistant: No</p>
-      {% endif %}
-    </div>
-  </div>
   {% endfor %}
 </div>
 

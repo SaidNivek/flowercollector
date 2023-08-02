@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Flower Details</h1>
+
+<div class="card">
+    <div class="card-image">
+        <img class="flower-image" src="{{ flower.image }}" alt="{{ flower.name }} image">
+        <span class="card-title">{{ flower.name }}</span>
+      </div>
+      <div class="card-content">
+        <p>Type: {{ flower.plantType }}</p>
+        <p>Bloom Time: {{ flower.bloom }}</p>
+        {% if flower.deerResistant %}
+            <p>Deer Resistant: Yes</p>
+        {% else %}
+            <p>Deer Resistant: No</p>
+        {% endif %}
+        <p>Height: {{ flower.height }}"</p>
+        <p>Spacing: {{ flower.spacing }}"</p>
+        <p>Hardiness: {{ flower.hardiness }}&deg; F</p>
+        <p>Pinch: {{ flower.pinch }}</p>
+      </div>
+</div>
+
+{% endblock %}
+
+<!-- name = models.CharField(max_length=100)
+plantType = models.CharField(max_length=100)
+bloom = models.TextField(max_length=250)
+height = models.CharField(max_length=100)
+spacing = models.CharField(max_length=100)
+hardiness = models.CharField(max_length=100)
+pinch = models.CharField(max_length=100)   
+deerResistant = models.BooleanField()
+image = models.TextField(max_length=1000) -->

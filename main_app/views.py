@@ -17,3 +17,12 @@ def flowers_index(request):
   return render(request, 'flowers/index.html', {
     'flowers': flowers
   })
+
+# main_app/views.py
+
+...
+
+def flowers_detail(request, flower_id):
+  flower = Flower.objects.get(id=flower_id)
+  return render(request, 'flowers/detail.html', { 'flower': flower })
+
