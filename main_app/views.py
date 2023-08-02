@@ -1,15 +1,14 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Flower
 
 # Create your views here.
 
 # Define the home view
 def home(request):
-  # Include an .html file extension - unlike when rendering EJS templates
   return render(request, 'home.html')
 
 def about(request):
-  # Include an .html file extension - unlike when rendering EJS templates
   return render(request, 'about.html')
 
 def flowers_index(request):
@@ -18,11 +17,10 @@ def flowers_index(request):
     'flowers': flowers
   })
 
-# main_app/views.py
-
-...
-
 def flowers_detail(request, flower_id):
   flower = Flower.objects.get(id=flower_id)
   return render(request, 'flowers/detail.html', { 'flower': flower })
 
+class FlowerCreate(CreateView):
+  model = Flower
+  fields= '__all__'

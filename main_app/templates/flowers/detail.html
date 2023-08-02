@@ -6,9 +6,9 @@
 <div class="card">
     <div class="card-image">
         <img class="flower-image" src="{{ flower.image }}" alt="{{ flower.name }} image">
-        <span class="card-title">{{ flower.name }}</span>
       </div>
       <div class="card-content">
+        <span class="card-title">{{ flower.name }}</span>
         <p>Type: {{ flower.plantType }}</p>
         <p>Bloom Time: {{ flower.bloom }}</p>
         {% if flower.deerResistant %}

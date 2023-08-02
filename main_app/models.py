@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Flower(models.Model):
@@ -14,3 +15,6 @@ class Flower(models.Model):
 
     def __str__(self):
         return f"This flower is called {self.name} and is in the family of {self.plantType}."
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'flower_id': self.id})
