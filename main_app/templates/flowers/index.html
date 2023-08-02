@@ -7,7 +7,7 @@
   {% for flower in flowers %}
   
   <div class="card small">
-      <a href="/flowers/{{ flower.id }}">
+      <a href="{% url 'detail' flower.id %}">
         <div class="card-image">
           <img class="flower-image" src="{{ flower.image }}" alt="{{ flower.name }} image">
           <span class="card-title">{{ flower.name }}</span>
