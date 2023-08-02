@@ -20,4 +20,10 @@ footer.page-footer {
 
 .card {
   max-width: 25%;
+  transition-property: transform;
+  transition-duration: 1s;
+}
+
+.flower-cards > .card:hover {
+  transform: scale(1.05);
 }
