@@ -1,6 +1,14 @@
 from django.db import models
 from django.urls import reverse
 
+WATER_TIMES = (
+    (
+        ('M', 'Morning'),
+        ('A', 'Afternoon'),
+        ('E', 'Evening')
+    )
+)
+
 # Create your models here.
 class Flower(models.Model):
     name = models.CharField(max_length=100)
@@ -18,3 +26,16 @@ class Flower(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'flower_id': self.id})
+    
+class Watering(models.Model):
+    date = models.DateField()
+    time = models.CharField(
+        max_length=1,
+        choices=WATER_TIMES,
+        default=WATER_TIMES[0][0]
+    )
+
+    cat = models.ForeignKey(Flower, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_time_display()} watering on {self.date}."
