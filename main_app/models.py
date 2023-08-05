@@ -35,7 +35,7 @@ class Watering(models.Model):
         default=WATER_TIMES[0][0]
     )
 
-    cat = models.ForeignKey(Flower, on_delete=models.CASCADE)
+    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.get_time_display()} watering on {self.date}."
