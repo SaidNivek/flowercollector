@@ -31,11 +31,18 @@
     </div>
     
     <div class="col s6">
-      <form method="POST">
+      <form method="POST" action="{% url 'add_feeding' flower.id %}">
         {% csrf_token %}
         {{ watering_form.as_p }}
         <input type="submit" class="btn" value="Add Watering">
       </form>
+
+      {% if flower.watered_today %}
+        <div class="card-panel teal-text center-align">{{flower.name}} has been watered today. Don't overwater!</div>
+      {% else %}
+        <div class="card-panel red-text center-align">{{flower.name}} might need to be watered today.</div>
+      {% endif %}
+
       <table class="striped">
         <thead>
           <tr><th>Date Watered</th><th>Time Watered</th></tr>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 WATER_TIMES = (
     (
@@ -27,6 +28,9 @@ class Flower(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'flower_id': self.id})
     
+    def watered_today(self):
+        return self.watering_set.filter(date=date.today()).count() >= 1
+    
 class Watering(models.Model):
     date = models.DateField('watering date')
     time = models.CharField(
@@ -39,3 +43,7 @@ class Watering(models.Model):
 
     def __str__(self):
         return f"{self.get_time_display()} watering on {self.date}."
+    
+    # Change the default sort, most recent dates at the top
+    class Meta:
+        ordering=['-date']
