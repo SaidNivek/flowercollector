@@ -28,7 +28,7 @@ class Flower(models.Model):
         return reverse('detail', kwargs={'flower_id': self.id})
     
 class Watering(models.Model):
-    date = models.DateField()
+    date = models.DateField('watering date')
     time = models.CharField(
         max_length=1,
         choices=WATER_TIMES,
