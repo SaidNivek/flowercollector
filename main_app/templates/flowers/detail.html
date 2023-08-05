@@ -50,17 +50,17 @@
         </tbody>
       </table>
     </div>
-
   </div>
+
+  <script>
+    const dateEl = document.getElementById('id_date');
+    // M is Materialize's global variable
+    M.Datepicker.init(dateEl, {
+      format: 'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true
+    });
+  </script>
     
-    {% endblock %}
-    
-<!-- name = models.CharField(max_length=100)
-plantType = models.CharField(max_length=100)
-bloom = models.TextField(max_length=250)
-height = models.CharField(max_length=100)
-spacing = models.CharField(max_length=100)
-hardiness = models.CharField(max_length=100)
-pinch = models.CharField(max_length=100)   
-deerResistant = models.BooleanField()
-image = models.TextField(max_length=1000) -->
+{% endblock %}
