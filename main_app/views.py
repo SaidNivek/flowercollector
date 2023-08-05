@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Flower
+from .forms import WateringForm
 
 # Create your views here.
 
@@ -19,7 +20,11 @@ def flowers_index(request):
 
 def flowers_detail(request, flower_id):
   flower = Flower.objects.get(id=flower_id)
-  return render(request, 'flowers/detail.html', { 'flower': flower })
+  watering_form = WateringForm()
+  return render(request, 'flowers/detail.html', { 
+    'flower': flower,
+    'watering_form': watering_form, 
+  })
 
 class FlowerCreate(CreateView):
   model = Flower

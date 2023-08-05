@@ -31,6 +31,11 @@
     </div>
     
     <div class="col s6">
+      <form method="POST">
+        {% csrf_token %}
+        {{ watering_form.as_p }}
+        <input type="submit" class="btn" value="Add Watering">
+      </form>
       <table class="striped">
         <thead>
           <tr><th>Date Watered</th><th>Time Watered</th></tr>
