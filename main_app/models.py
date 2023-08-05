@@ -11,6 +11,17 @@ WATER_TIMES = (
 )
 
 # Create your models here.
+class Garden(models.Model):
+    name = models.CharField(max_length=50)
+    length = models.IntegerField()
+    width = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.name} is {self.width} feet wide and {self.length} feet long.'
+    
+    def get_absolute_url(self):
+        return reverse ('gardens_detail', kwargs={'pk': self.id})
+
 class Flower(models.Model):
     name = models.CharField(max_length=100)
     plantType = models.CharField(max_length=100)
