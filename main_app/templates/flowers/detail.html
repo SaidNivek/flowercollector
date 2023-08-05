@@ -61,6 +61,10 @@
       setDefaultDate: true,
       autoClose: true
     });
+
+    // add additional JS to initialize select below
+    const selectEl = document.getElementById('id_time');
+    M.FormSelect.init(selectEl);
   </script>
     
 {% endblock %}
