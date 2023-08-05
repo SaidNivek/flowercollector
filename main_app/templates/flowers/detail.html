@@ -26,6 +26,23 @@
         <a href="{% url 'flowers_update' flower.id %}">Edit</a>
         <a href="{% url 'flowers_delete' flower.id %}">Delete</a>
       </div>
+
+      <div class="col s6">
+        <table class="striped">
+          <thead>
+            <tr><th>Date</th><th>Time</th></tr>
+          </thead>
+          <tbody>
+            {% for watering in flower.watering_set.all %}
+              <tr>
+                <td>{{watering.date}}</td>
+                <td>{{watering.get_time_display}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
 </div>
 
 {% endblock %}
