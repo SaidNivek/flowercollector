@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Flower
+from .models import Flower, Garden
 from .forms import WateringForm
 
 # Create your views here.
@@ -36,6 +37,16 @@ def add_feeding(request, flower_id):
     new_feeding.save()
   return redirect('detail', flower_id=flower_id)
 
+# @login_required
+def assoc_garden(request, flower_id, garden_id):
+    Flower.objects.get(id=flower_id).gardens.add(garden_id)
+    return redirect('detail', flower_id=flower_id)
+
+# @login_required
+def unassoc_garden(request, flower_id, garden_id):
+    Flower.objects.get(id=flower_id).gardens.remove(garden_id)
+    return redirect('detail', flower_id=flower_id)
+
 class FlowerCreate(CreateView):
   model = Flower
   fields= '__all__'
@@ -47,3 +58,21 @@ class FlowerUpdate(UpdateView):
 class FlowerDelete(DeleteView):
   model = Flower
   success_url = '/flowers'
+
+class GardenCreate(CreateView):
+  model = Garden
+  fields = ['name', 'color']
+
+class GardenList(ListView):
+    model = Garden
+
+class GardenDetail(DetailView):
+    model = Garden
+
+class GardenUpdate(UpdateView):
+    model = Garden
+    fields = ['name', 'color']
+
+class GardenDelete(DeleteView):
+    model = Garden
+    success_url = '/gardens/'
