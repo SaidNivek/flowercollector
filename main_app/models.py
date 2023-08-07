@@ -2,6 +2,13 @@ from django.db import models
 from django.urls import reverse
 from datetime import date
 
+YES_NO = (
+    (
+        ('Y', 'Yes'),
+        ('N', 'No')
+    )
+)
+
 WATER_TIMES = (
     (
         ('M', 'Morning'),
@@ -30,8 +37,13 @@ class Flower(models.Model):
     spacing = models.CharField(max_length=100)
     hardiness = models.CharField(max_length=100)
     pinch = models.CharField(max_length=100)   
-    deerResistant = models.BooleanField()
+    deerResistant = models.CharField(
+        'Deer Resistant', max_length=1,
+        choices=YES_NO,
+        default=YES_NO[0][0]
+    )
     image = models.TextField(max_length=1000)
+    gardens = models.ManyToManyField(Garden)
 
     def __str__(self):
         return f"This flower is called {self.name} and is in the family of {self.plantType}."
