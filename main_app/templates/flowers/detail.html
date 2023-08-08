@@ -65,6 +65,12 @@
               <span class="card-title">
                 {{ garden.name }}
               </span>
+              <div class="card-action">
+                <form action="{% url 'unassoc_garden' flower.id garden.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn">Remove</button>
+                </form>
+              </div>
             </div>
           </div>
         {% endfor %}
