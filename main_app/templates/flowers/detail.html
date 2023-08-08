@@ -31,7 +31,7 @@
     </div>
     
     <div class="col s6">
-      <form method="POST" action="{% url 'add_feeding' flower.id %}">
+      <form method="POST" action="{% url 'add_watering' flower.id %}">
         {% csrf_token %}
         {{ watering_form.as_p }}
         <input type="submit" class="btn" value="Add Watering">
@@ -57,6 +57,28 @@
         </tbody>
       </table>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col s6">
+      <h3>Gardens with {{ flower.name }}</h3>
+      {% if flower.gardens.count %}
+        {% for garden in flower.gardens.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ garden.name }}
+              </span>
+              <p>Garden Length: {{ garden.length }} feet</p>
+              <p>Garden Width: {{ garden.width }} feet</p>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>Flower not yet planted in any gardens</h5>
+      {% endif %}
+    </div>
+    <!-- Available Gardens will come after this line -->
   </div>
 
   <script>

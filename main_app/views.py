@@ -27,14 +27,14 @@ def flowers_detail(request, flower_id):
     'watering_form': watering_form, 
   })
 
-def add_feeding(request, flower_id):
+def add_watering(request, flower_id):
   # create a ModelForm instance using the data in request.POST
   form = WateringForm(request.POST)
   if form.is_valid():
     # don't save the form to the db until it has the flower_id assigned
-    new_feeding = form.save(commit=False)
-    new_feeding.flower_id = flower_id
-    new_feeding.save()
+    new_watering = form.save(commit=False)
+    new_watering.flower_id = flower_id
+    new_watering.save()
   return redirect('detail', flower_id=flower_id)
 
 # @login_required
@@ -61,7 +61,7 @@ class FlowerDelete(DeleteView):
 
 class GardenCreate(CreateView):
   model = Garden
-  fields = ['name', 'color']
+  fields = ['name', 'length', 'width']
 
 class GardenList(ListView):
     model = Garden
@@ -71,7 +71,7 @@ class GardenDetail(DetailView):
 
 class GardenUpdate(UpdateView):
     model = Garden
-    fields = ['name', 'color']
+    fields = ['name', 'length', 'width']
 
 class GardenDelete(DeleteView):
     model = Garden
