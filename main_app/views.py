@@ -21,10 +21,13 @@ def flowers_index(request):
 
 def flowers_detail(request, flower_id):
   flower = Flower.objects.get(id=flower_id)
+  # Get gardens the flower is not currently in
+  gardens_flower_not_in = Garden.objects.exclude(id__in = flower.gardens.all().values_list('id'))
   watering_form = WateringForm()
   return render(request, 'flowers/detail.html', { 
     'flower': flower,
-    'watering_form': watering_form, 
+    'watering_form': watering_form,
+    'gardens': gardens_flower_not_in, 
   })
 
 def add_watering(request, flower_id):
@@ -49,7 +52,7 @@ def unassoc_garden(request, flower_id, garden_id):
 
 class FlowerCreate(CreateView):
   model = Flower
-  fields= '__all__'
+  fields= ['name', 'plantType', 'bloom', 'height', 'spacing', 'hardiness', 'pinch', 'deerResistant', 'image']
 
 class FlowerUpdate(UpdateView):
   model = Flower
