@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from django.contrib.auth.models import User
 
 YES_NO = (
     (
@@ -44,6 +45,7 @@ class Flower(models.Model):
     )
     image = models.TextField(max_length=1000)
     gardens = models.ManyToManyField(Garden)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"This flower is called {self.name} and is in the family of {self.plantType}."
