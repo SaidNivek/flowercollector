@@ -18,4 +18,5 @@ urlpatterns = [
     path('cats/<int:flower_id>/add_watering/', views.add_watering, name='add_watering'),
     path('cats/<int:flower_id>/assoc_garden/<int:garden_id>/', views.assoc_garden, name='assoc_garden'),
     path('cats/<int:flower_id>/unassoc_garden/<int:garden_id>/', views.unassoc_garden, name='unassoc_garden'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
