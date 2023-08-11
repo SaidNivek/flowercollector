@@ -20,6 +20,9 @@
           <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Flower Collector</a></li>
         </ul>
         <ul class="right">
+          {% if user.is_authenticated %}
+            <li>Welcome, {{ user.username }}!</li>
+          {% endif %}
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'flowers_create' %}">Add a Flower</a></li>
