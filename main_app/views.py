@@ -3,6 +3,8 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Flower, Garden
 from .forms import WateringForm
 
@@ -15,12 +17,14 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def flowers_index(request):
   flowers = Flower.objects.filter(user=request.user)
   return render(request, 'flowers/index.html', {
     'flowers': flowers
   })
 
+@login_required
 def flowers_detail(request, flower_id):
   flower = Flower.objects.get(id=flower_id)
   # Get gardens the flower is not currently in
@@ -32,6 +36,7 @@ def flowers_detail(request, flower_id):
     'gardens': gardens_flower_not_in, 
   })
 
+@login_required
 def add_watering(request, flower_id):
   # create a ModelForm instance using the data in request.POST
   form = WateringForm(request.POST)
@@ -42,17 +47,17 @@ def add_watering(request, flower_id):
     new_watering.save()
   return redirect('detail', flower_id=flower_id)
 
-# @login_required
+@login_required
 def assoc_garden(request, flower_id, garden_id):
     Flower.objects.get(id=flower_id).gardens.add(garden_id)
     return redirect('detail', flower_id=flower_id)
 
-# @login_required
+@login_required
 def unassoc_garden(request, flower_id, garden_id):
     Flower.objects.get(id=flower_id).gardens.remove(garden_id)
     return redirect('detail', flower_id=flower_id)
 
-class FlowerCreate(CreateView):
+class FlowerCreate(LoginRequiredMixin, CreateView):
   model = Flower
   fields= ['name', 'plantType', 'bloom', 'height', 'spacing', 'hardiness', 'pinch', 'deerResistant', 'image']
 
@@ -64,29 +69,29 @@ class FlowerCreate(CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
 
-class FlowerUpdate(UpdateView):
+class FlowerUpdate(LoginRequiredMixin, UpdateView):
   model = Flower
   fields = ['bloom', 'height', 'spacing', 'hardiness', 'deerResistant', 'pinch', 'image']
 
-class FlowerDelete(DeleteView):
+class FlowerDelete(LoginRequiredMixin, DeleteView):
   model = Flower
   success_url = '/flowers'
 
-class GardenCreate(CreateView):
+class GardenCreate(LoginRequiredMixin, CreateView):
   model = Garden
   fields = ['name', 'length', 'width']
 
-class GardenList(ListView):
+class GardenList(LoginRequiredMixin, ListView):
     model = Garden
 
-class GardenDetail(DetailView):
+class GardenDetail(LoginRequiredMixin, DetailView):
     model = Garden
 
-class GardenUpdate(UpdateView):
+class GardenUpdate(LoginRequiredMixin, UpdateView):
     model = Garden
     fields = ['name', 'length', 'width']
 
-class GardenDelete(DeleteView):
+class GardenDelete(LoginRequiredMixin, DeleteView):
     model = Garden
     success_url = '/gardens/'
 
