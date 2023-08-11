@@ -63,7 +63,7 @@ def unassoc_garden(request, flower_id, garden_id):
 
 class FlowerCreate(LoginRequiredMixin, CreateView):
   model = Flower
-  fields= ['name', 'plantType', 'bloom', 'height', 'spacing', 'hardiness', 'pinch', 'deerResistant', 'image']
+  fields= ['name', 'plantType', 'bloom', 'height', 'spacing', 'hardiness', 'pinch', 'deerResistant']
 
   # This inherited method is called when a
   # valid flower form is being submitted
@@ -75,7 +75,7 @@ class FlowerCreate(LoginRequiredMixin, CreateView):
 
 class FlowerUpdate(LoginRequiredMixin, UpdateView):
   model = Flower
-  fields = ['bloom', 'height', 'spacing', 'hardiness', 'deerResistant', 'pinch', 'image']
+  fields = ['bloom', 'height', 'spacing', 'hardiness', 'deerResistant', 'pinch']
 
 class FlowerDelete(LoginRequiredMixin, DeleteView):
   model = Flower
