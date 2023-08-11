@@ -16,7 +16,7 @@ def about(request):
   return render(request, 'about.html')
 
 def flowers_index(request):
-  flowers = Flower.objects.all()
+  flowers = Flower.objects.filter(user=request.user)
   return render(request, 'flowers/index.html', {
     'flowers': flowers
   })
