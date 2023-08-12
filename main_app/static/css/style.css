@@ -24,6 +24,6 @@ footer.page-footer {
   transition-duration: 1s;
 }
 
-.flower-cards > .card:hover {
+.hover-cards > .card:hover {
   transform: scale(1.05);
 }
