@@ -41,6 +41,19 @@ def flowers_detail(request, flower_id):
   })
 
 @login_required
+def gardens_detail(request, garden_id):
+  garden = Garden.objects.get(id=garden_id)
+  # Get the flowers in the current garden
+  # flowers_in_garden = Flower.objects.filter(id__in = garden.all().values_list('id'))
+  # watering_form = WateringForm()
+  return render(request, 'main_app/garden_detail.html', { 
+    'garden': garden,
+    # 'watering_form': watering_form,
+    # 'flowers': flowers_in_garden, 
+  })
+
+
+@login_required
 def add_watering(request, flower_id):
   # create a ModelForm instance using the data in request.POST
   form = WateringForm(request.POST)
@@ -86,18 +99,18 @@ class GardenCreate(LoginRequiredMixin, CreateView):
   fields = ['name', 'length', 'width']
 
 class GardenList(LoginRequiredMixin, ListView):
-    model = Garden
+  model = Garden
 
 class GardenDetail(LoginRequiredMixin, DetailView):
-    model = Garden
+  model = Garden
 
 class GardenUpdate(LoginRequiredMixin, UpdateView):
-    model = Garden
-    fields = ['name', 'length', 'width']
+  model = Garden
+  fields = ['name', 'length', 'width']
 
 class GardenDelete(LoginRequiredMixin, DeleteView):
-    model = Garden
-    success_url = '/gardens/'
+  model = Garden
+  success_url = '/gardens/'
 
 def signup(request):
   error_message = ''
