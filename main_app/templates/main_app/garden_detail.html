@@ -4,7 +4,7 @@
 <h1>Garden Details</h1>
 
 <div class="row">
-  <div class="col s6 col-offset-3">
+  <div class="col s6">
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ garden.name }}</span>
@@ -18,4 +18,28 @@
     </div>
   </div>
 </div>
+
+<div class="row">
+    {% if flowers %}
+      {% for flower in flowers %}
+      <a href="{% url 'detail' flower.id %}">
+        <div class="card col s6 hover-cards">
+          <div class="card-content">
+            <span class="card-title">{{ flower.name }}</span>
+            <p>Type: {{ flower.plantType }}</p>
+            <p>Bloom Time: {{ flower.bloom }}</p>
+            <p>Deer Resistant: {{ flower.get_deerResistant_display }}</p>
+            <p>Height: {{ flower.height }}"</p>
+            <p>Spacing: {{ flower.spacing }}"</p>
+            <p>Hardiness: {{ flower.hardiness }}&deg; F</p>
+            <p>Pinch: {{ flower.pinch }}</p>
+          </div>
+        </a>
+      </div>
+
+      {% endfor %}
+      {% else %}
+        <p>No flowers in this garden, yet.</p>
+      {% endif%}
+  </div>
 {% endblock %}

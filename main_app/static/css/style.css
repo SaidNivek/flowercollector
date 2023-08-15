@@ -15,15 +15,14 @@ footer.page-footer {
 
 .flower-cards {
   display: flex;
-  gap: 3%;
 }
 
 .card {
   max-width: 25%;
   transition-property: transform;
-  transition-duration: 1s;
+  transition-duration: 1s;  
 }
 
-.hover-cards > .card:hover {
+.hover-cards:hover {
   transform: scale(1.05);
 }

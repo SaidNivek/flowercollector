@@ -43,13 +43,16 @@ def flowers_detail(request, flower_id):
 @login_required
 def gardens_detail(request, garden_id):
   garden = Garden.objects.get(id=garden_id)
+  flowers = Flower.objects.filter(gardens = garden_id)
+  print(flowers)
   # Get the flowers in the current garden
-  # flowers_in_garden = Flower.objects.filter(id__in = garden.all().values_list('id'))
+  # flowers_in_garden = Garden.objects.exclude(id__in = garden.all().values_list('id'))
   # watering_form = WateringForm()
+  print(garden)
   return render(request, 'main_app/garden_detail.html', { 
     'garden': garden,
     # 'watering_form': watering_form,
-    # 'flowers': flowers_in_garden, 
+    'flowers': flowers 
   })
 
 

@@ -3,10 +3,9 @@
 
 <h1>Flower List</h1>
 
-<div class="hover-cards">
-  {% for flower in flowers %}
-  
-  <div class="card ">
+
+  {% for flower in flowers %}  
+    <div class="card hover-cards">
       <a href="{% url 'detail' flower.id %}">
         <div class="card-content">
           <span class="card-title">{{ flower.name }}</span>
@@ -21,6 +20,4 @@
       </a>  
     </div>
   {% endfor %}
-</div>
-
 {% endblock %}
