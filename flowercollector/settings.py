@@ -10,11 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
+import os
 import environ
+from pathlib import Path
 environ.Env()
 environ.Env.read_env()
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,10 +81,11 @@ WSGI_APPLICATION = 'flowercollector.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'SERVER': os.environ['DATABASE_SERVER'],
         'NAME': os.environ['DATABASE_NAME'],
         'USER': os.environ['DATABASE_USER'],
         'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': os.environ['DATABASE_HOST'],
+        'URL': os.environ['DATABASE_URL'],
         'PORT': '5432',
     }
 }
