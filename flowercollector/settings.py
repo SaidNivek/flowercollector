@@ -145,3 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import django_on_heroku
 django_on_heroku.settings(locals())
+
+#  Heroku information
+# https://stark-cliffs-76244-af8836a1a8b4.herokuapp.com/ | https://git.heroku.com/stark-cliffs-76244.git
