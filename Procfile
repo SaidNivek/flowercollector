@@ -1,0 +1,1 @@
+web: gunicorn 'flowercollector.wsgi.application'.wsgi
