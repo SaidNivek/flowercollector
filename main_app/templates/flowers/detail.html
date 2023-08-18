@@ -80,9 +80,11 @@
         {% for garden in flower.gardens.all %}
           <div class="card">
             <div class="card-content">
-              <span class="card-title">
-                {{ garden.name }}
-              </span>
+              <a href="{% url 'gardens_detail' garden.id %}">
+                <span class="card-title">
+                  {{ garden.name }}
+                </span>
+              </a>
               <div class="card-action">
                 <form action="{% url 'unassoc_garden' flower.id garden.id %}" method="POST">
                   {% csrf_token %}
