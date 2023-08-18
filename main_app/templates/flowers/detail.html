@@ -78,10 +78,10 @@
       <h3>Gardens with {{ flower.name }}</h3>
       {% if flower.gardens.count %}
         {% for garden in flower.gardens.all %}
-          <div class="card">
+          <div class="card ">
             <div class="card-content">
               <a href="{% url 'gardens_detail' garden.id %}">
-                <span class="card-title">
+                <span class="card-title hover-cards">
                   {{ garden.name }}
                 </span>
               </a>
