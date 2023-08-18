@@ -113,7 +113,7 @@ class GardenUpdate(LoginRequiredMixin, UpdateView):
 
 class GardenDelete(LoginRequiredMixin, DeleteView):
   model = Garden
-  success_url = '/gardens/'
+  success_url = '/gardens'
 
 def signup(request):
   error_message = ''
