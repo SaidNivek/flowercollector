@@ -3,21 +3,20 @@
 
 <h1>Garden List</h1>
 
-
-{% for garden in garden_list %}
-  <a href="{% url 'gardens_detail' garden.id %}">
-    <div class="card hover-cards">
-        <div class="card-content">
-            <span class="card-title">{{ garden.name }}</span>
-            <p>Length: {{ garden.length }}</p>
-            <p>Width: {{ garden.width }}</p>
-        </div>
-    </div>
-  </a>
-{% endfor %}
-
-{% for flower in flowers %}
-  <p>test</p>
-{% endfor %}
+{% if garden_list %}
+  {% for garden in garden_list %}
+    <a href="{% url 'gardens_detail' garden.id %}">
+      <div class="card hover-cards">
+          <div class="card-content">
+              <span class="card-title">{{ garden.name }}</span>
+              <p>Length: {{ garden.length }}</p>
+              <p>Width: {{ garden.width }}</p>
+          </div>
+      </div>
+    </a>
+  {% endfor %}
+{% else %}
+  <p>Add a Garden to see them listed here.</p>
+{% endif %}
 
 {% endblock %}
