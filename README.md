@@ -12,3 +12,6 @@ Users will be able to:
 - Add a photo to AWS using the upload field in the flower details page
 - Add watering dates and times to each of their individual flowers, to track how frequently they have been watered
 - See a status change when their flower has been watered for the day, cautioning them to not overwater their flower/s
+
+## Known Issues
+- Users are currently able to see all gardnes, but can also edit and delete them, even if they don't belong to the current user
